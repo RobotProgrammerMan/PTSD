@@ -79,7 +79,7 @@ void LoadingScreenTips() {
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
 
-    meth = rand() % 28 + 1;
+    meth = rand() % 41 + 1;
 
     if (meth == 1) {
       Brain.Screen.print("Stop ordering Marinara, I beg of you...");
@@ -166,6 +166,45 @@ void LoadingScreenTips() {
     }
     if (meth == 28) {
       Brain.Screen.print("Kilometers? I use calories per Big Mac");
+    }
+    if (meth == 29) {
+      Brain.Screen.print("Tyler has 16 hats. Why?");
+    }
+    if (meth == 30) {
+      Brain.Screen.print("Jack has magic hands. Be afraid.");
+    }
+    if (meth == 31) {
+      Brain.Screen.print("Navya keeps trying to draw on my tape");
+    }
+    if (meth == 32) {
+      Brain.Screen.print("Alexavier ate my sandwhich >:(");
+    }
+    if (meth == 33) {
+      Brain.Screen.print("Hannah didn't let me play Payday 2 :(");
+    }
+    if (meth == 34) {
+      Brain.Screen.print("Seriously, who killed Heavy?");
+    }
+    if (meth == 35) {
+      Brain.Screen.print("vine_boom.mp3");
+    }
+    if (meth == 36) {
+      Brain.Screen.print("The ducks at the park are free. I have 432.");
+    }
+    if (meth == 37) {
+      Brain.Screen.print("Triballs give you points when scored.");
+    }
+    if (meth == 38) {
+      Brain.Screen.print("Elevation is worth points.");
+    }
+    if (meth == 39) {
+      Brain.Screen.print("This is a robot :)");
+    }
+    if (meth == 40) {
+      Brain.Screen.print("i really need to get a job...");
+    }
+    if (meth == 41) {
+      Brain.Screen.print("They locked me in here :(");
     }
 
     lsd = 1;
