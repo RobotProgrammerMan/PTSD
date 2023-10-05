@@ -8,6 +8,8 @@
 /*----------------------------------------------------------------------------*/
 
 #include "vex.h"
+#include <stdlib.h>
+#include <time.h>
 
 using namespace vex;
 
@@ -24,6 +26,20 @@ motor Catapult = motor(PORT7, ratio36_1, true); // Catapult Motor
 // Variables
 int meth = 1; // Determines which saying to print
 int lsd = 500; // Timer using variable
+
+const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting various warcrimes...", "That's right, it goes in the square hole!",
+                        "Loading chicken noises mucka blucka...", "Ok, hear me out officer...", "Jesus Screw Part 2: Electric Boogaloo",
+                        "Wuh-oh, looks like the [REDACTED] is kicking in! qowijdqoiwjdoiqwj", "Thank you for coming to our TED Talk", 
+                        "Geneva Convention? I thought it was a checklist!", "popcat.mp3", "Evading taxes and law enforcement since 2020!",
+                        "RIP Famine", "YOU, ME, GAS STATION!", "We eat PlayDoh. Cry about it.", "STRIKE ME DOWN ZEUS! YOU DON'T HAVE THE- *boom*",
+                        "No Maidens?", "Crazy? I was crazy once!", "chicken_noises.mp3", "... --- ...", ":O", "Just ziptie it! It'll be fine! *crash*",
+                        "I was bored, ok?", "Yo momma", "AROUND THE WORLD AROUND THE WORLD", "i ate plastic once. did not taste good.",
+                        "Don't toucha mah spageht", "*pretending to work*", "Kilometers? I use calories per Big Mac", "Tyler has 16 hats. Why?",
+                        "Jack has magic hands. Be afraid.", "Navya keeps trying to draw on my tape", "Alexavier ate my sandwhich >:(",
+                        "Hannah didn't let me play Payday 2 :(", "Seriously, who killed Heavy?", "vine_boom.mp3", "The ducks at the park are free. I have 432.",
+                        "Triballs give you points when scored.", "Elevation is worth points.", "This is a robot :)", "i really need to get a job...",
+                        "They locked me in here :("
+                        };
 
 // Driving Commands
 void YeetThatCorn() {
@@ -74,141 +90,18 @@ void Left() {
 // Other Commands
 
 void LoadingScreenTips() {
-
   if (lsd == 500) {
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
 
-    meth = rand() % 41 + 1;
+    srand(Brain.Timer.systemHighResolution());
 
-    if (meth == 1) {
-      Brain.Screen.print("Stop ordering Marinara, I beg of you...");
-    }
-    if (meth == 2) {
-      Brain.Screen.print("Commiting various warcrimes...");
-    }
-    if (meth == 3) {
-      Brain.Screen.print("That's right, it goes in the square hole!");
-    }
-    if (meth == 4) {
-      Brain.Screen.print("Loading chicken noises mucka blucka...");
-    }
-    if (meth == 5) {
-      Brain.Screen.print("Ok, hear me out officer...");
-    }
-    if (meth == 6) {
-      Brain.Screen.print("Jesus Screw Part 2: Electric Boogaloo");
-    }
-    if (meth == 7) {
-      Brain.Screen.print(
-          "Wuh-oh, looks like the [REDACTED] is kicking in! qowijdqoiwjdoiqwj");
-    }
-    if (meth == 8) {
-      Brain.Screen.print("Thank you for coming to our TED Talk");
-    }
-    if (meth == 9) {
-      Brain.Screen.print("Geneva Convention? I thought it was a checklist!");
-    }
-    if (meth == 10) {
-      Brain.Screen.print("popcat.mp3");
-    }
-    if (meth == 11) {
-      Brain.Screen.print("Evading taxes and law enforcement since 2020!");
-    }
-    if (meth == 12) {
-      Brain.Screen.print("RIP Famine");
-    }
-    if (meth == 13) {
-      Brain.Screen.print("YOU, ME, GAS STATION!");
-    }
-    if (meth == 14) {
-      Brain.Screen.print("We eat PlayDoh. Cry about it.");
-    }
-    if (meth == 15) {
-      Brain.Screen.print("STRIKE ME DOWN ZEUS! YOU DON'T HAVE THE- *boom*");
-    }
-    if (meth == 16) {
-      Brain.Screen.print("No Maidens?");
-    }
-    if (meth == 17) {
-      Brain.Screen.print("Crazy? I was crazy once!");
-    }
-    if (meth == 18) {
-      Brain.Screen.print("chicken_noises.mp3");
-    }
-    if (meth == 19) {
-      Brain.Screen.print("... --- ...");
-    }
-    if (meth == 20) {
-      Brain.Screen.print(":O");
-    }
-    if (meth == 21) {
-      Brain.Screen.print("Just ziptie it! It'll be fine! *crash*");
-    }
-    if (meth == 22) {
-      Brain.Screen.print("I was bored, ok?");
-    }
-    if (meth == 23) {
-      Brain.Screen.print("Yo momma");
-    }
-    if (meth == 24) {
-      Brain.Screen.print("AROUND THE WORLD AROUND THE WORLD");
-    }
-    if (meth == 25) {
-      Brain.Screen.print("i ate plastic once. did not taste good.");
-    }
-    if (meth == 26) {
-      Brain.Screen.print("Don't toucha mah spageht");
-      wait(3, sec);
-    }
-    if (meth == 27) {
-      Brain.Screen.print("*pretending to work*");
-    }
-    if (meth == 28) {
-      Brain.Screen.print("Kilometers? I use calories per Big Mac");
-    }
-    if (meth == 29) {
-      Brain.Screen.print("Tyler has 16 hats. Why?");
-    }
-    if (meth == 30) {
-      Brain.Screen.print("Jack has magic hands. Be afraid.");
-    }
-    if (meth == 31) {
-      Brain.Screen.print("Navya keeps trying to draw on my tape");
-    }
-    if (meth == 32) {
-      Brain.Screen.print("Alexavier ate my sandwhich >:(");
-    }
-    if (meth == 33) {
-      Brain.Screen.print("Hannah didn't let me play Payday 2 :(");
-    }
-    if (meth == 34) {
-      Brain.Screen.print("Seriously, who killed Heavy?");
-    }
-    if (meth == 35) {
-      Brain.Screen.print("vine_boom.mp3");
-    }
-    if (meth == 36) {
-      Brain.Screen.print("The ducks at the park are free. I have 432.");
-    }
-    if (meth == 37) {
-      Brain.Screen.print("Triballs give you points when scored.");
-    }
-    if (meth == 38) {
-      Brain.Screen.print("Elevation is worth points.");
-    }
-    if (meth == 39) {
-      Brain.Screen.print("This is a robot :)");
-    }
-    if (meth == 40) {
-      Brain.Screen.print("i really need to get a job...");
-    }
-    if (meth == 41) {
-      Brain.Screen.print("They locked me in here :(");
-    }
+    meth = rand() % 41;
+
+    Brain.Screen.print(sayings[meth]);
 
     lsd = 1;
-  } else if (lsd < 1000) {
+  } else {
     lsd = lsd + 1;
   }
 }
@@ -240,14 +133,7 @@ void usercontrol(void) {
   while (1) {
 
     // Call Driving Functions
-    TopLeft.spin(forward, Controller1.Axis3.position(), percent);
-    BottomLeft.spin(forward, Controller1.Axis3.position(), percent);
-    TopRight.spin(forward, Controller1.Axis2.position(), percent);
-    BottomRight.spin(forward, Controller1.Axis2.position(), percent);
-
-    // Button Controls
-    Controller1.ButtonR1.pressed(YeetThatCorn);
-    Controller1.ButtonR2.pressed(DontYeetCorn);
+   
 
     thread(LoadingScreenTips).detach();
 
