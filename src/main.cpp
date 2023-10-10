@@ -133,7 +133,10 @@ void usercontrol(void) {
   while (1) {
 
     // Call Driving Functions
-   
+    TopLeft.spin(forward, Controller1.Axis3.position(), percent);
+    BottomLeft.spin(forward, Controller1.Axis3.position(), percent);
+    TopRight.spin(forward, Controller1.Axis2.position(), percent);
+    BottomRight.spin(forward, Controller1.Axis2.position(), percent);
 
     thread(LoadingScreenTips).detach();
 
