@@ -35,10 +35,12 @@ const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting v
                         "No Maidens?", "Crazy? I was crazy once!", "chicken_noises.mp3", "... --- ...", ":O", "Just ziptie it! It'll be fine! *crash*",
                         "I was bored, ok?", "Yo momma", "AROUND THE WORLD AROUND THE WORLD", "i ate plastic once. did not taste good.",
                         "Don't toucha mah spageht", "*pretending to work*", "Kilometers? I use calories per Big Mac", "Tyler has 16 hats. Why?",
-                        "Jack has magic hands. Be afraid.", "Navya keeps trying to draw on my tape", "Alexavier ate my sandwhich >:(",
+                        "Jack has magic hands. Be afraid.", "Navya keeps trying to draw on my tape", "Alexavier, I don't want the mower...",
                         "Hannah didn't let me play Payday 2 :(", "Seriously, who killed Heavy?", "vine_boom.mp3", "The ducks at the park are free. I have 432.",
                         "Triballs give you points when scored.", "Elevation is worth points.", "This is a robot :)", "i really need to get a job...",
-                        "They locked me in here :("
+                        "They locked me in here :(", "MAKE WAY FOR THE DOZER!", "FIGHT THE PAIN! FIGHT THE CLOWNS!", "It's juuuuuust a little blood!",
+                        "I found the source of the ticking! It's a pipebomb!", "Alright ramblers, let's get rambling!", "I NEED A MEDIC BAG!",
+                        "5 BULLETS LEFT!"
                         };
 
 // Driving Commands
@@ -96,7 +98,7 @@ void LoadingScreenTips() {
 
     srand(Brain.Timer.systemHighResolution());
 
-    meth = rand() % 41;
+    meth = rand() % 48;
 
     Brain.Screen.print(sayings[meth-1]);
 
@@ -158,4 +160,5 @@ int main() {
   }
 }
 
-// California Girls
+// MOTHERFUCKING BULLDOZER!
+// YOU'RE UP AGAINST THE WALL, AND I AM THE FUCKING WALL!
