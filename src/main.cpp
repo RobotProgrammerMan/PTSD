@@ -98,7 +98,7 @@ void LoadingScreenTips() {
 
     meth = rand() % 41;
 
-    Brain.Screen.print(sayings[meth]);
+    Brain.Screen.print(sayings[meth-1]);
 
     lsd = 1;
   } else {
