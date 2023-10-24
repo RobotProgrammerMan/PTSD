@@ -21,11 +21,12 @@ motor TopLeft = motor(PORT1, ratio18_1, true); // Top Left Drive Motor
 motor BottomLeft = motor(PORT9, ratio6_1, true); // Bottom Left Drive Motor
 motor TopRight = motor(PORT2, ratio18_1, false); // Top Right Drive Motor
 motor BottomRight = motor(PORT10, ratio6_1, false); // Bottom Right Drive Motor
-motor Catapult = motor(PORT7, ratio36_1, true); // Catapult Motor
+motor Arm = motor(PORT7, ratio36_1, true); // Catapult Motor
 
 // Variables
 int meth = 1; // Determines which saying to print
 int lsd = 500; // Timer using variable
+bool armMoving = false;
 
 const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting various warcrimes...", "That's right, it goes in the square hole!",
                         "Loading chicken noises mucka blucka...", "Ok, hear me out officer...", "Jesus Screw Part 2: Electric Boogaloo",
@@ -39,17 +40,29 @@ const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting v
                         "Hannah didn't let me play Payday 2 :(", "Seriously, who killed Heavy?", "vine_boom.mp3", "The ducks at the park are free. I have 432.",
                         "Triballs give you points when scored.", "Elevation is worth points.", "This is a robot :)", "i really need to get a job...",
                         "They locked me in here :(", "MAKE WAY FOR THE DOZER!", "FIGHT THE PAIN! FIGHT THE CLOWNS!", "It's juuuuuust a little blood!",
-                        "I found the source of the ticking! It's a pipebomb!", "Alright ramblers, let's get rambling!", "I NEED A MEDIC BAG!",
+                        "I found the source of the ticking! A pipebomb!", "Alright ramblers, let's get rambling!", "I NEED A MEDIC BAG!",
                         "5 BULLETS LEFT!"
                         };
 
 // Driving Commands
-void YeetThatCorn() {
-  Catapult.spin(forward);
+void ArmUp() {
+  if (armMoving == false) {
+    Arm.spin(forward);
+    armMoving = true;
+  } else {
+    Arm.stop();
+    armMoving = false;
+  }
 }
 
-void DontYeetCorn() {
-  Catapult.stop();
+void ArmDown() {
+  if (armMoving == false) {
+    Arm.spin(reverse);
+    armMoving = true;
+  } else {
+    Arm.stop();
+    armMoving = false;
+  }
 }
 
 // Autonomous Commands
@@ -114,7 +127,7 @@ void pre_auton(void) {
   BottomLeft.setBrake(brake);
   BottomRight.setBrake(brake);
 
-  Catapult.setVelocity(75, percent);
+  Arm.setVelocity(75, percent);
   TopLeft.setVelocity(100, percent);
   TopRight.setVelocity(100, percent);
   BottomLeft.setVelocity(100, percent);
@@ -139,6 +152,9 @@ void usercontrol(void) {
     BottomLeft.spin(forward, Controller1.Axis3.position(), percent);
     TopRight.spin(forward, Controller1.Axis2.position(), percent);
     BottomRight.spin(forward, Controller1.Axis2.position(), percent);
+
+    Controller1.ButtonR1.pressed(ArmUp);
+    Controller1.ButtonR2.pressed(ArmDown);
 
     thread(LoadingScreenTips).detach();
 
