@@ -31,7 +31,8 @@ const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting v
                         "Wuh-oh, looks like the [REDACTED] is kicking in! qowijdqoiwjdoiqwj", "Thank you for coming to our TED Talk", 
                         "Geneva Convention? I thought it was a checklist!", "popcat.mp3", "Evading taxes and law enforcement since 2020!",
                         "RIP Famine", "YOU, ME, GAS STATION!", "We eat PlayDoh. Cry about it.", "STRIKE ME DOWN ZEUS! YOU DON'T HAVE THE- *boom*",
-                        "No Maidens?", "Crazy? I was crazy once!", "chicken_noises.mp3", "... --- ...", ":O", "Just ziptie it! It'll be fine! *crash*",
+                        "No Maidens?", "Crazy? I was crazy once!", 
+                        "chicken_noises.mp3", "... --- ...", ":O", "Just ziptie it! It'll be fine! *crash*",
                         "I was bored, ok?", "Yo momma", "AROUND THE WORLD AROUND THE WORLD", "i ate plastic once. did not taste good.",
                         "Don't toucha mah spageht", "*pretending to work*", "Kilometers? I use calories per Big Mac", "Tyler has 16 hats. Why?",
                         "Jack has magic hands. Be afraid.", "Navya keeps trying to draw on my tape", "Alexavier, I don't want the mower...",
@@ -39,7 +40,7 @@ const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting v
                         "Triballs give you points when scored.", "Elevation is worth points.", "This is a robot :)", "i really need to get a job...",
                         "They locked me in here :(", "MAKE WAY FOR THE DOZER!", "FIGHT THE PAIN! FIGHT THE CLOWNS!", "It's juuuuuust a little blood!",
                         "I found the source of the ticking! A pipebomb!", "Alright ramblers, let's get rambling!", "I NEED A MEDIC BAG!",
-                        "5 BULLETS LEFT!"
+                        "5 BULLETS LEFT!", "I don't like greek eggs and lamb."
                         };
 
 // Driving Commands
@@ -109,15 +110,36 @@ void LoadingScreenTips() {
 
     srand(Brain.Timer.systemHighResolution());
 
-    meth = rand() % 48;
+    meth = rand() % 49;
 
-    Brain.Screen.print(sayings[meth-1]);
+    Brain.Screen.print(sayings[meth]);
+
+    if (meth == 48) {
+      Brain.Screen.setCursor(2,1);
+      Brain.Screen.print("I don't like them at all, madame.");
+      Brain.Screen.setCursor(3,1);
+      Brain.Screen.print("Not with Hades. Not with the ladies.");
+      Brain.Screen.setCursor(4,1);
+      Brain.Screen.print("Not as a treat on the island of Crete.");
+      Brain.Screen.setCursor(5,1);
+      Brain.Screen.print("I will not eat them Persephone.");
+      Brain.Screen.setCursor(6,1);
+      Brain.Screen.print("I will not eat them. Let me be!");
+    } else if (meth == 16) {
+      Brain.Screen.setCursor(2,1);
+      Brain.Screen.print("They locked me in a room.");
+      Brain.Screen.setCursor(3,1);
+      Brain.Screen.print("A rubber room! A rubber room with rats!");
+      Brain.Screen.setCursor(4,1);
+      Brain.Screen.print("And rats make me crazy! Crazy?");
+    }
 
     lsd = 1;
   } else {
     lsd = lsd + 1;
   }
 }
+
 
 void pre_auton(void) {
   TopLeft.setBrake(brake);
