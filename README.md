@@ -12,9 +12,10 @@ This is also the first time I've uploaded something to GitHub, so if it's broken
 > Bottom Left Drive Motor: Port 9                                                                                                                                   
 > Top Right Drive Motor: Port 2                                                                                                                                     
 > Bottom Right Drive Motor: Port 10                                                                                                                                
-> Arm/Catapult/Whatever thing it is anymore, idk: Port 7
-> Pneumatic Wing A: Triport A
+> Arm/Catapult/Whatever thing it is anymore, idk: Port 7                                                                                                                                                            
+> Pneumatic Wing A: Triport A                                                                                                                                                                                       
 > Pneumatic Wing B: Triport B
+> 
 
 ## Features 🥔
 ### All the wacky stuff that this bot has:
