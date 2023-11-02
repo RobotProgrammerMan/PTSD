@@ -20,6 +20,9 @@ motor BottomLeft = motor(PORT9, ratio6_1, true); // Bottom Left Drive Motor
 motor TopRight = motor(PORT2, ratio18_1, false); // Top Right Drive Motor
 motor BottomRight = motor(PORT10, ratio6_1, false); // Bottom Right Drive Motor
 motor Arm = motor(PORT7, ratio36_1, true); // Catapult Motor
+digital_out wingPistonA(Brain.ThreeWirePort.A);
+digital_out wingPistonB(Brain.ThreeWirePort.B);
+
 
 // Variables
 int meth = 1; // Determines which saying to print
@@ -61,6 +64,16 @@ void ArmDown() {
   } else {
     Arm.stop();
     armMoving = false;
+  }
+}
+
+void WingsETC() {
+  if (Controller1.ButtonR1.pressing()) {
+    wingPistonA.set(0);
+    wingPistonB.set(0);
+  } else {
+    wingPistonA.set(1);
+    wingPistonB.set(1);
   }
 }
 
@@ -147,11 +160,13 @@ void pre_auton(void) {
   BottomLeft.setBrake(brake);
   BottomRight.setBrake(brake);
 
-  Arm.setVelocity(75, percent);
   TopLeft.setVelocity(100, percent);
   TopRight.setVelocity(100, percent);
   BottomLeft.setVelocity(100, percent);
   BottomRight.setVelocity(100, percent);
+
+  wingPistonA.set(1);
+  wingPistonB.set(1);
 }
 
 void autonomous(void) {
@@ -173,8 +188,7 @@ void usercontrol(void) {
     TopRight.spin(forward, Controller1.Axis2.position(), percent);
     BottomRight.spin(forward, Controller1.Axis2.position(), percent);
 
-    Controller1.ButtonR1.pressed(ArmUp);
-    Controller1.ButtonR2.pressed(ArmDown);
+    WingsETC();
 
     thread(LoadingScreenTips).detach();
 
