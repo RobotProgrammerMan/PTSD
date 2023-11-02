@@ -12,13 +12,15 @@ This is also the first time I've uploaded something to GitHub, so if it's broken
 > Bottom Left Drive Motor: Port 9                                                                                                                                   
 > Top Right Drive Motor: Port 2                                                                                                                                     
 > Bottom Right Drive Motor: Port 10                                                                                                                                
-> Arm/Catapult/Whatever thing it is anymore, idk: Port 7                                                                                                            
+> Arm/Catapult/Whatever thing it is anymore, idk: Port 7
+> Pneumatic Wing A: Triport A
+> Pneumatic Wing B: Triport B
 
 ## Features 🥔
 ### All the wacky stuff that this bot has:
 
 #### Driving
-This code is cool, it allows you to drive. I dunno what else you want me to say about it, it's driving. Arm function, wheel function, yeh :)
+This code is cool, it allows you to drive. I dunno what else you want me to say about it, it's driving. Arm function, wheel function, wings, yeh :)
 #### Autonomous
 Bot go vroom by itself. Pretty cool, eh?
 #### Loading Screen Tips™
