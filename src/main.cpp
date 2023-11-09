@@ -19,23 +19,22 @@ motor TopLeft = motor(PORT1, ratio18_1, true); // Top Left Drive Motor
 motor BottomLeft = motor(PORT9, ratio6_1, true); // Bottom Left Drive Motor
 motor TopRight = motor(PORT2, ratio18_1, false); // Top Right Drive Motor
 motor BottomRight = motor(PORT10, ratio6_1, false); // Bottom Right Drive Motor
-motor Arm = motor(PORT7, ratio36_1, true); // Catapult Motor
-digital_out wingPistonA(Brain.ThreeWirePort.A);
-digital_out wingPistonB(Brain.ThreeWirePort.B);
+motor SpinnySpin = motor(PORT7, ratio36_1, true); // Flywheel Motor
+digital_out wingPistonA(Brain.ThreeWirePort.A); // Wing
+digital_out wingPistonB(Brain.ThreeWirePort.B); // Wing
 
 
 // Variables
 int meth = 1; // Determines which saying to print
 int lsd = 500; // Timer using variable
-bool armMoving = false;
+bool spinning = false;
 
 const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting various warcrimes...", "That's right, it goes in the square hole!",
                         "Loading chicken noises mucka blucka...", "Ok, hear me out officer...", "Jesus Screw Part 2: Electric Boogaloo",
                         "Wuh-oh, looks like the [REDACTED] is kicking in! qowijdqoiwjdoiqwj", "Thank you for coming to our TED Talk", 
                         "Geneva Convention? I thought it was a checklist!", "popcat.mp3", "Evading taxes and law enforcement since 2020!",
                         "RIP Famine", "YOU, ME, GAS STATION!", "We eat PlayDoh. Cry about it.", "STRIKE ME DOWN ZEUS! YOU DON'T HAVE THE- *boom*",
-                        "No Maidens?", "Crazy? I was crazy once!", 
-                        "chicken_noises.mp3", "... --- ...", ":O", "Just ziptie it! It'll be fine! *crash*",
+                        "No Maidens?", "Crazy? I was crazy once!", "chicken_noises.mp3", "... --- ...", ":O", "Just ziptie it! It'll be fine! *crash*",
                         "I was bored, ok?", "Yo momma", "AROUND THE WORLD AROUND THE WORLD", "i ate plastic once. did not taste good.",
                         "Don't toucha mah spageht", "*pretending to work*", "Kilometers? I use calories per Big Mac", "Tyler has 16 hats. Why?",
                         "Jack has magic hands. Be afraid.", "Navya keeps trying to draw on my tape", "Alexavier, I don't want the mower...",
@@ -47,23 +46,13 @@ const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting v
                         };
 
 // Driving Commands
-void ArmUp() {
-  if (armMoving == false) {
-    Arm.spin(forward);
-    armMoving = true;
+void SpinFlywheel() {
+  if (spinning == false) {
+    SpinnySpin.spin(forward);
+    spinning = true;
   } else {
-    Arm.stop();
-    armMoving = false;
-  }
-}
-
-void ArmDown() {
-  if (armMoving == false) {
-    Arm.spin(reverse);
-    armMoving = true;
-  } else {
-    Arm.stop();
-    armMoving = false;
+    SpinnySpin.stop();
+    spinning = false;
   }
 }
 
@@ -189,6 +178,8 @@ void usercontrol(void) {
     BottomRight.spin(forward, Controller1.Axis2.position(), percent);
 
     WingsETC();
+
+    Controller1.ButtonA.pressed(SpinFlywheel);
 
     thread(LoadingScreenTips).detach();
 
