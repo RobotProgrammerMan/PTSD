@@ -67,6 +67,30 @@ void WingsETC() {
 }
 
 // Autonomous Commands
+void Stop() {
+  TopRight.stop();
+  TopLeft.stop();
+  BottomRight.stop();
+  BottomLeft.stop();
+}
+
+void Right(double movementTime) {
+  TopRight.spin(reverse);
+  TopLeft.spin(forward);
+  BottomRight.spin(reverse);
+  BottomLeft.spin(forward);
+  wait(movementTime, seconds);
+  Stop();
+}
+
+void Left(double movementTime) {
+  TopRight.spin(forward);
+  TopLeft.spin(reverse);
+  BottomRight.spin(forward);
+  BottomLeft.spin(reverse);
+  wait(movementTime, seconds);
+  Stop();
+}
 
 void Forward(int movementTime) {
   TopRight.spin(forward);
@@ -77,35 +101,10 @@ void Forward(int movementTime) {
   Stop();
 }
 
-void Reverse(int movementTime) {
+void Reverse(double movementTime) {
   TopRight.spin(reverse);
   TopLeft.spin(reverse);
   BottomRight.spin(reverse);
-  BottomLeft.spin(reverse);
-  wait(movementTime, seconds);
-  Stop();
-}
-
-void Stop() {
-  TopRight.stop();
-  TopLeft.stop();
-  BottomRight.stop();
-  BottomLeft.stop();
-}
-
-void Right(int movementTime) {
-  TopRight.spin(reverse);
-  TopLeft.spin(forward);
-  BottomRight.spin(reverse);
-  BottomLeft.spin(forward);
-  wait(movementTime, seconds);
-  Stop();
-}
-
-void Left(int movementTime) {
-  TopRight.spin(forward);
-  TopLeft.spin(reverse);
-  BottomRight.spin(forward);
   BottomLeft.spin(reverse);
   wait(movementTime, seconds);
   Stop();
