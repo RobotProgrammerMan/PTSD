@@ -19,7 +19,7 @@ motor TopLeft = motor(PORT1, ratio18_1, true); // Top Left Drive Motor
 motor BottomLeft = motor(PORT9, ratio6_1, true); // Bottom Left Drive Motor
 motor TopRight = motor(PORT2, ratio18_1, false); // Top Right Drive Motor
 motor BottomRight = motor(PORT10, ratio6_1, false); // Bottom Right Drive Motor
-motor SpinnySpin = motor(PORT5, ratio36_1, true); // Flywheel Motor
+motor SpinnySpin = motor(PORT5, ratio6_1, true); // Flywheel Motor
 digital_out wingPistonA(Brain.ThreeWirePort.A); // Wing
 digital_out wingPistonB(Brain.ThreeWirePort.B); // Wing
 
