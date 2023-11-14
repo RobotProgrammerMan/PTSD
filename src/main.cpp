@@ -19,7 +19,7 @@ motor TopLeft = motor(PORT1, ratio18_1, true); // Top Left Drive Motor
 motor BottomLeft = motor(PORT9, ratio6_1, true); // Bottom Left Drive Motor
 motor TopRight = motor(PORT2, ratio18_1, false); // Top Right Drive Motor
 motor BottomRight = motor(PORT10, ratio6_1, false); // Bottom Right Drive Motor
-motor SpinnySpin = motor(PORT7, ratio36_1, true); // Flywheel Motor
+motor SpinnySpin = motor(PORT5, ratio36_1, true); // Flywheel Motor
 digital_out wingPistonA(Brain.ThreeWirePort.A); // Wing
 digital_out wingPistonB(Brain.ThreeWirePort.B); // Wing
 
@@ -27,7 +27,7 @@ digital_out wingPistonB(Brain.ThreeWirePort.B); // Wing
 // Variables
 int meth = 1; // Determines which saying to print
 int lsd = 500; // Timer using variable
-bool spinning = false;
+bool spin = false;
 
 const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting various warcrimes...", "That's right, it goes in the square hole!",
                         "Loading chicken noises mucka blucka...", "Ok, hear me out officer...", "Jesus Screw Part 2: Electric Boogaloo",
@@ -47,12 +47,10 @@ const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting v
 
 // Driving Commands
 void SpinFlywheel() {
-  if (spinning == false) {
+  if (spin == true) {
     SpinnySpin.spin(forward);
-    spinning = true;
   } else {
     SpinnySpin.stop();
-    spinning = false;
   }
 }
 
@@ -74,40 +72,32 @@ void Stop() {
   BottomLeft.stop();
 }
 
-void Right(double movementTime) {
+void Right() {
   TopRight.spin(reverse);
   TopLeft.spin(forward);
   BottomRight.spin(reverse);
   BottomLeft.spin(forward);
-  wait(movementTime, seconds);
-  Stop();
 }
 
-void Left(double movementTime) {
+void Left() {
   TopRight.spin(forward);
   TopLeft.spin(reverse);
   BottomRight.spin(forward);
   BottomLeft.spin(reverse);
-  wait(movementTime, seconds);
-  Stop();
 }
 
-void Forward(int movementTime) {
+void Forward() {
   TopRight.spin(forward);
   TopLeft.spin(forward);
   BottomRight.spin(forward);
   BottomLeft.spin(forward);
-  wait(movementTime, seconds);
-  Stop();
 }
 
-void Reverse(double movementTime) {
+void Reverse() {
   TopRight.spin(reverse);
   TopLeft.spin(reverse);
   BottomRight.spin(reverse);
   BottomLeft.spin(reverse);
-  wait(movementTime, seconds);
-  Stop();
 }
 
 // Other Commands
@@ -160,14 +150,19 @@ void pre_auton(void) {
   TopRight.setVelocity(100, percent);
   BottomLeft.setVelocity(100, percent);
   BottomRight.setVelocity(100, percent);
+  SpinnySpin.setVelocity(100, percent);
 
   wingPistonA.set(1);
   wingPistonB.set(1);
 }
 
 void autonomous(void) {
- Forward(.8);
- Reverse(.8);
+ Forward();
+ wait(.8, sec);
+ Stop();
+ Reverse();
+ wait(.8, sec);
+ Stop();
 }
 
 void usercontrol(void) {
@@ -180,9 +175,15 @@ void usercontrol(void) {
     TopRight.spin(forward, Controller1.Axis2.position(), percent);
     BottomRight.spin(forward, Controller1.Axis2.position(), percent);
 
-    WingsETC();
+    if(Controller1.ButtonL1.pressing()) {
+      spin = true;
+    }
+    if(Controller1.ButtonL2.pressing()) {
+      spin = false;
+    }
 
-    Controller1.ButtonA.pressed(SpinFlywheel);
+    WingsETC();
+    SpinFlywheel();
 
     thread(LoadingScreenTips).detach();
 
