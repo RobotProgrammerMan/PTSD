@@ -172,10 +172,20 @@ void pre_auton(void) {
 
 void autonomous(void) {
  Forward();
- wait(.8, sec);
+ wait(.5, sec);
  Stop();
  Reverse();
+ wingPistonA.set(0);
+ wingPistonB.set(0);
+ wait(.5, sec);
+ Stop();
+ wingPistonA.set(1);
+ wingPistonB.set(1);
+ Left();
  wait(.8, sec);
+ Stop();
+ Forward();
+ wait(.3, sec);
  Stop();
 }
 
