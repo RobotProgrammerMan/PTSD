@@ -186,9 +186,6 @@ void usercontrol(void) {
     WingsETC();
     SpinFlywheel();
 
-    Controller1.ButtonA.pressed(Furry);
-    Controller1.ButtonB.pressed(NonFurry);
-
     thread(LoadingScreenTips).detach();
 
     wait(20, msec);
