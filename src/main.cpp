@@ -20,6 +20,7 @@ motor BottomLeft = motor(PORT9, ratio6_1, true); // Bottom Left Drive Motor
 motor TopRight = motor(PORT2, ratio18_1, false); // Top Right Drive Motor
 motor BottomRight = motor(PORT10, ratio6_1, false); // Bottom Right Drive Motor
 motor SpinnySpin = motor(PORT5, ratio6_1, true); // Flywheel Motor
+motor Tail = motor(PORT20, ratio18_1, false);
 digital_out wingPistonA(Brain.ThreeWirePort.A); // Wing
 digital_out wingPistonB(Brain.ThreeWirePort.B); // Wing
 
@@ -28,6 +29,7 @@ digital_out wingPistonB(Brain.ThreeWirePort.B); // Wing
 int meth = 1; // Determines which saying to print
 int lsd = 500; // Timer using variable
 bool spin = false;
+bool deployed = false;
 
 const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting various warcrimes...", "That's right, it goes in the square hole!",
                         "Loading chicken noises mucka blucka...", "Ok, hear me out officer...", "Jesus Screw Part 2: Electric Boogaloo",
@@ -52,6 +54,18 @@ void SpinFlywheel() {
   } else {
     SpinnySpin.stop();
   }
+}
+
+void Furry() {
+    Tail.spin(forward);
+    wait(2, sec);
+    Tail.stop();
+}
+
+void NonFurry() {
+  Tail.spin(reverse);
+  wait(2, sec);
+  Tail.stop();
 }
 
 void WingsETC() {
@@ -184,6 +198,9 @@ void usercontrol(void) {
 
     WingsETC();
     SpinFlywheel();
+
+    Controller1.ButtonA.pressed(Furry);
+    Controller1.ButtonB.pressed(NonFurry);
 
     thread(LoadingScreenTips).detach();
 
