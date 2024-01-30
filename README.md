@@ -13,8 +13,8 @@ This is also the first time I've uploaded something to GitHub, so if it's broken
 > Top Right Drive Motor: Port 2                                                                                                                                     
 > Bottom Right Drive Motor: Port 10                                                                                                                                
 > Flywheel: Port 5                                                                                                                                                            
-> Pneumatic Wing A: Triport A                                                                                                                                                                                       
-> Pneumatic Wing B: Triport B
+> Pneumatic Wing A: Triport A (Duh)                                                                                                                                                                                  
+> Pneumatic Wing B: Triport B (Again, duh)
 > 
 
 ## Features 🥔
