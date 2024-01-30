@@ -75,32 +75,18 @@ void Stop() {
   BottomLeft.stop();
 }
 
-void Right() {
-  TopRight.spin(reverse);
-  TopLeft.spin(forward);
-  BottomRight.spin(reverse);
-  BottomLeft.spin(forward);
+void moveBiatch(double moveNumber) {
+  TopRight.spinFor(moveNumber, rev, false);
+  TopLeft.spinFor(moveNumber, rev, false);
+  BottomRight.spinFor(moveNumber, rev, false);
+  BottomLeft.spinFor(moveNumber, rev, true);
 }
 
-void Left() {
-  TopRight.spin(forward);
-  TopLeft.spin(reverse);
-  BottomRight.spin(forward);
-  BottomLeft.spin(reverse);
-}
-
-void Forward() {
-  TopRight.spin(forward);
-  TopLeft.spin(forward);
-  BottomRight.spin(forward);
-  BottomLeft.spin(forward);
-}
-
-void Reverse() {
-  TopRight.spin(reverse);
-  TopLeft.spin(reverse);
-  BottomRight.spin(reverse);
-  BottomLeft.spin(reverse);
+void turnBiatch(double turnNumber) {
+  TopRight.spinFor(-turnNumber, rev, false);
+  TopLeft.spinFor(turnNumber, rev, false);
+  BottomRight.spinFor(-turnNumber, rev, false);
+  BottomLeft.spinFor(turnNumber, rev, true);
 }
 
 // Other Commands
@@ -176,12 +162,9 @@ void pre_auton(void) {
 }
 
 void autonomous(void) {
- Forward();
- wait(.8, sec);
- Stop();
- Reverse();
- wait(.8, sec);
- Stop();
+ moveBiatch(1);
+ wait(.1, sec);
+ moveBiatch(-1);
 }
 
 void usercontrol(void) {
