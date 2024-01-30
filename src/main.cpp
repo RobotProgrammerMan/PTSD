@@ -20,6 +20,8 @@ motor BottomLeft = motor(PORT9, ratio6_1, true); // Bottom Left Drive Motor
 motor TopRight = motor(PORT2, ratio18_1, false); // Top Right Drive Motor
 motor BottomRight = motor(PORT10, ratio6_1, false); // Bottom Right Drive Motor
 motor SpinnySpin = motor(PORT5, ratio6_1, true); // Flywheel Motor
+motor ArmRight = motor(PORT3, ratio18_1, false); // Right Side of Arm
+motor ArmLeft = motor(PORT7, ratio18_1, false); // Left Side of Arm
 digital_out wingPistonA(Brain.ThreeWirePort.A); // Wing
 digital_out wingPistonB(Brain.ThreeWirePort.B); // Wing
 
@@ -56,7 +58,7 @@ void SpinFlywheel() {
 }
 
 void WingsETC() {
-  if (Controller1.ButtonR1.pressing()) {
+  if (Controller1.ButtonA.pressing()) {
     wingPistonA.set(0);
     wingPistonB.set(0);
   } else {
