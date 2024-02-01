@@ -183,6 +183,14 @@ void usercontrol(void) {
     if(Controller1.ButtonL2.pressing()) {
       spin = false;
     }
+    if(Controller1.ButtonR1.pressing()) {
+      ArmLeft.spin(forward);
+      ArmRight.spin(forward);
+    }
+    if(Controller1.ButtonR2.pressing()) {
+      ArmLeft.spin(reverse);
+      ArmRight.spin(reverse);
+    }
 
     WingsETC();
     SpinFlywheel();
