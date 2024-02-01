@@ -39,7 +39,7 @@ const char* sayings[] = {"Stop ordering Marinara, I beg of you...", "Commiting v
                         "RIP Famine", "YOU, ME, GAS STATION!", "We eat PlayDoh. Cry about it.", "STRIKE ME DOWN ZEUS! YOU DON'T HAVE THE- *boom*",
                         "No Maidens?", "Crazy? I was crazy once!", "chicken_noises.mp3", "... --- ...", ":O", "Just ziptie it! It'll be fine! *crash*",
                         "I was bored, ok?", "Yo momma", "AROUND THE WORLD AROUND THE WORLD", "i ate plastic once. did not taste good.",
-                        "Don't toucha mah spageht", "*pretending to work*", "Kilometers? I use calories per Big Mac", "Tyler has 16 hats. Why?",
+                        "Don't toucha mah spageht", "*pretending to work*", "Kilometers? I use calories per Big Mac", "Tyler has 20+ hats. Why?",
                         "Jack has magic hands. Be afraid.", "Navya keeps trying to draw on my tape", "Alexavier, I don't want the mower...",
                         "Hannah didn't let me play Payday 2 :(", "Seriously, who killed Heavy?", "vine_boom.mp3", "The ducks at the park are free. I have 432.",
                         "Triballs give you points when scored.", "Elevation is worth points.", "This is a robot :)", "i really need to get a job...",
@@ -150,12 +150,16 @@ void pre_auton(void) {
   TopRight.setBrake(brake);
   BottomLeft.setBrake(brake);
   BottomRight.setBrake(brake);
+  ArmLeft.setBrake(hold);
+  ArmRight.setBrake(hold);
 
   TopLeft.setVelocity(100, percent);
   TopRight.setVelocity(100, percent);
   BottomLeft.setVelocity(100, percent);
   BottomRight.setVelocity(100, percent);
   SpinnySpin.setVelocity(100, percent);
+  ArmLeft.setVelocity(50, percent);
+  ArmRight.setVelocity(50, percent);
 
   wingPistonA.set(1);
   wingPistonB.set(1);
