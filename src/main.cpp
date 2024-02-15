@@ -19,6 +19,8 @@ motor TopLeft = motor(PORT1, ratio18_1, true); // Top Left Drive Motor
 motor BottomLeft = motor(PORT9, ratio6_1, true); // Bottom Left Drive Motor
 motor TopRight = motor(PORT2, ratio18_1, false); // Top Right Drive Motor
 motor BottomRight = motor(PORT10, ratio6_1, false); // Bottom Right Drive Motor
+motor ExtraLeft = motor(PORT16, ratio18_1, true);
+motor ExtraRight = motor(PORT17, ratio18_1, false);
 motor SpinnySpin = motor(PORT5, ratio6_1, true); // Flywheel Motor
 motor ArmRight = motor(PORT3, ratio18_1, false); // Right Side of Arm
 motor ArmLeft = motor(PORT7, ratio18_1, false); // Left Side of Arm
@@ -73,20 +75,26 @@ void Stop() {
   TopLeft.stop();
   BottomRight.stop();
   BottomLeft.stop();
+  ExtraRight.stop();
+  ExtraLeft.stop();
 }
 
 void moveBiatch(double moveNumber) {
   TopRight.spinFor(moveNumber, rev, false);
   TopLeft.spinFor(moveNumber, rev, false);
   BottomRight.spinFor(moveNumber, rev, false);
-  BottomLeft.spinFor(moveNumber, rev, true);
+  BottomLeft.spinFor(moveNumber, rev, false);
+  ExtraRight.spinFor(moveNumber, rev, false);
+  ExtraLeft.spinFor(moveNumber, rev, true);
 }
 
 void turnBiatch(double turnNumber) {
   TopRight.spinFor(-turnNumber, rev, false);
   TopLeft.spinFor(turnNumber, rev, false);
   BottomRight.spinFor(-turnNumber, rev, false);
-  BottomLeft.spinFor(turnNumber, rev, true);
+  BottomLeft.spinFor(turnNumber, rev, false);
+  ExtraLeft.spinFor(turnNumber, rev, false);
+  ExtraRight.spinFor(-turnNumber, rev, true);
 }
 
 // Other Commands
@@ -150,6 +158,8 @@ void pre_auton(void) {
   TopRight.setBrake(brake);
   BottomLeft.setBrake(brake);
   BottomRight.setBrake(brake);
+  ExtraRight.setBrake(brake);
+  ExtraLeft.setBrake(brake);
   ArmLeft.setBrake(hold);
   ArmRight.setBrake(hold);
 
@@ -157,6 +167,8 @@ void pre_auton(void) {
   TopRight.setVelocity(100, percent);
   BottomLeft.setVelocity(100, percent);
   BottomRight.setVelocity(100, percent);
+  ExtraRight.setVelocity(100, percent);
+  ExtraLeft.setVelocity(100, percent);
   SpinnySpin.setVelocity(100, percent);
   ArmLeft.setVelocity(50, percent);
   ArmRight.setVelocity(50, percent);
@@ -180,6 +192,8 @@ void usercontrol(void) {
     BottomLeft.spin(forward, Controller1.Axis3.position(), percent);
     TopRight.spin(forward, Controller1.Axis2.position(), percent);
     BottomRight.spin(forward, Controller1.Axis2.position(), percent);
+    ExtraRight.spin(forward, Controller1.Axis2.position(), percent);
+    ExtraLeft.spin(forward, Controller1.Axis3.position(), percent);
 
     if(Controller1.ButtonL1.pressing()) {
       spin = true;
